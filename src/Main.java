@@ -46,11 +46,16 @@ public class Main {
             }
             for(int[] c:wins){
                 if(board[c[0]]==board[c[1]] && board[c[1]]==board[c[2]] && board[c[0]]!=0){
+                    draw();
                     if (board[c[0]] == 1){
-                        System.out.print("X WINS!");
+                        System.out.println("X WINS!");
                     }else{
-                        System.out.print("O WINS!");
+                        System.out.println("O WINS!");
                     }
+                    board = new int[9];
+                    xturn = false;
+                    System.out.print("Enter 1 to continue.");
+                    sc.nextInt();
                 }
             }
             xturn = !xturn;
