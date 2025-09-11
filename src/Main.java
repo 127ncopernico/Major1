@@ -33,7 +33,7 @@ public class Main {
         }
         return n;
     }
-    public static int bot(int ply){
+    public static int botF(int x, int ply){
         int free = 0;
         for(int[] c:wins){
             int amt = 0;
@@ -57,11 +57,18 @@ public class Main {
                     }
                 }
             }
-            if(amt == 2 || amt == -2){
+            if(amt == x){
                 return free;
             }
         }
-        return free;
+        return -free;
+    }
+    public static int bot(int ply){
+        int x = botF(2,ply);
+        if (x > 0){
+            return x;
+        }
+        return Math.abs(botF(-2,ply));
     }
     public static void main(String[] args) {
         boolean ended = true;
