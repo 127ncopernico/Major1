@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int[] board = new int[9];
@@ -25,6 +26,9 @@ public class Main {
         System.out.println("\n\n\n\n\n\n\n\n "+spot(1)+" | "+spot(2)+" | "+spot(3)+" \n---+---+---\n "+spot(4)+" | "+spot(5)+" | "+spot(6)+"\n---+---+---\n "+spot(7)+" | "+spot(8)+" | "+spot(9));
     }
     public static void main(String[] args) {
+        ArrayList arrayListx = new ArrayList();
+        ArrayList arrayListy = new ArrayList();
+
         boolean xturn = true;
         while(true){
             draw();
@@ -49,8 +53,11 @@ public class Main {
                     draw();
                     if (board[c[0]] == 1){
                         System.out.println("X WINS!");
+                        arrayListx.add(1);
                     }else{
                         System.out.println("O WINS!");
+                        arrayListy.add(1);
+
                     }
                     board = new int[9];
                     xturn = false;
@@ -74,6 +81,5 @@ public class Main {
             }
             xturn = !xturn;
         }
-
+        }
     }
-}
