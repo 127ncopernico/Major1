@@ -34,6 +34,27 @@ public class Main {
         return n;
     }
     public static int bot(int ply){
+        for(int[] c:wins){
+            int amt = 0;
+            boolean flag = false;
+            for(int i:c){
+                if(board[i] == ply){
+                    if(amt < 0 || flag){
+                        amt = 0;
+                        flag = true;
+                    }else{
+                        amt++;
+                    }
+                }else if(board[i] == 0) {
+                    if(amt > 0 || flag){
+                        amt = 0;
+                        flag = true;
+                    }else{
+                        amt--;
+                    }
+                }
+            }
+        }
         return 1;
     }
     public static void main(String[] args) {
