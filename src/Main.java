@@ -1,16 +1,17 @@
-//0 1 2
-//3 4 5
-//6 7 8
-//0 3 6
-//1 4 7
-//2 5 8
-//0 4 8
-//2 4 6
-
 import java.util.Scanner;
 public class Main {
     public static Scanner sc = new Scanner(System.in);
     public static int[] board = new int[9];
+    public static int[][] wins = {
+            {0,1,2},
+            {3,4,5},
+            {6,7,8},
+            {0,3,6},
+            {1,4,7},
+            {2,5,8},
+            {0,4,8},
+            {2,4,6}
+    };
     public static String spot(int i){
         if (board[i-1] == 0){
             return ""+i;
@@ -21,7 +22,7 @@ public class Main {
         }
     }
     public static void draw(){
-        System.out.println(" "+spot(1)+" | "+spot(2)+" | "+spot(3)+" \n---+---+---\n "+spot(4)+" | "+spot(5)+" | "+spot(6)+"\n---+---+---\n "+spot(7)+" | "+spot(8)+" | "+spot(9));
+        System.out.println("\n\n\n\n\n\n\n\n "+spot(1)+" | "+spot(2)+" | "+spot(3)+" \n---+---+---\n "+spot(4)+" | "+spot(5)+" | "+spot(6)+"\n---+---+---\n "+spot(7)+" | "+spot(8)+" | "+spot(9));
     }
     public static void main(String[] args) {
         boolean xturn = true;
@@ -42,6 +43,15 @@ public class Main {
                 board[n-1] = 1;
             }else{
                 board[n-1] = 2;
+            }
+            for(int[] c:wins){
+                if(board[c[0]]==board[c[1]] && board[c[1]]==board[c[2]] && board[c[0]]!=0){
+                    if (board[c[0]] == 1){
+                        System.out.print("X WINS!");
+                    }else{
+                        System.out.print("O WINS!");
+                    }
+                }
             }
             xturn = !xturn;
         }
