@@ -21,28 +21,63 @@ public class Main {
             return "O";
         }
     }
-    public static void draw(){
-        System.out.println("\n\n\n\n\n\n\n\n "+spot(1)+" | "+spot(2)+" | "+spot(3)+" \n---+---+---\n "+spot(4)+" | "+spot(5)+" | "+spot(6)+"\n---+---+---\n "+spot(7)+" | "+spot(8)+" | "+spot(9));
+    public static void draw() {
+        System.out.println("\n\n\n\n\n\n\n\n " + spot(1) + " | " + spot(2) + " | " + spot(3) + " \n---+---+---\n " + spot(4) + " | " + spot(5) + " | " + spot(6) + "\n---+---+---\n " + spot(7) + " | " + spot(8) + " | " + spot(9));
+    }
+    public static int ply(){
+        System.out.print("Enter board pos: ");
+        int n = sc.nextInt();
+        while (n < 1 || n > 9 || board[n-1] != 0){
+            System.out.print("Invalid, enter board pos: ");
+            n = sc.nextInt();
+        }
+        return n;
+    }
+    public static int bot(int ply){
+        return 1;
     }
     public static void main(String[] args) {
+        boolean ended = true;
         boolean xturn = true;
+        boolean xbot = false;
+        boolean obot = false;
         while(true){
+            if(ended){
+               ended = false;
+
+               System.out.print("IS X A BOT? (Y/N): ");
+               if (sc.nextLine().equals("Y")){
+                   xbot = true;
+               }else{
+                   xbot = false;
+               }
+
+               System.out.print("IS O A BOT? (Y/N): ");
+               if (sc.nextLine().equals("Y")){
+                   obot = true;
+               }else{
+                   obot = false;
+               }
+            }
             draw();
             if(xturn){
                 System.out.print("X, ");
             }else{
                 System.out.print("O, ");
             }
-            System.out.print("Enter board pos: ");
-            int n = sc.nextInt();
-            while (n < 1 || n > 9 || board[n-1] != 0){
-                System.out.print("Invalid, enter board pos: ");
-                n = sc.nextInt();
-            }
+            int n;
             if(xturn){
-                board[n-1] = 1;
+                if(xbot){
+                    board[bot(1)-1] = 1;
+                }else {
+                    board[ply()-1] = 1;
+                }
             }else{
-                board[n-1] = 2;
+                if(obot){
+                    board[bot(2)-1] = 2;
+                }else {
+                    board[ply()-1] = 2;
+                }
             }
             for(int[] c:wins){
                 if(board[c[0]]==board[c[1]] && board[c[1]]==board[c[2]] && board[c[0]]!=0){
@@ -53,6 +88,7 @@ public class Main {
                         System.out.println("O WINS!");
                     }
                     board = new int[9];
+                    ended = true;
                     xturn = false;
                     System.out.print("Enter 1 to continue.");
                     sc.nextInt();
@@ -63,6 +99,7 @@ public class Main {
                     draw();
                     System.out.println("ITS A DRAW!");
                     board = new int[9];
+                    ended = true;
                     xturn = false;
                     System.out.print("Enter 1 to continue.");
                     sc.nextInt();
