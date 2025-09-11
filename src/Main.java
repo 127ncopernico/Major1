@@ -34,6 +34,7 @@ public class Main {
         return n;
     }
     public static int bot(int ply){
+        int free = 0;
         for(int[] c:wins){
             int amt = 0;
             boolean flag = false;
@@ -46,6 +47,8 @@ public class Main {
                         amt++;
                     }
                 }else if(board[i] == 0) {
+                    free = i;
+                }else{
                     if(amt > 0 || flag){
                         amt = 0;
                         flag = true;
@@ -54,8 +57,11 @@ public class Main {
                     }
                 }
             }
+            if(amt == 2 || amt == -2){
+                return free;
+            }
         }
-        return 1;
+        return free;
     }
     public static void main(String[] args) {
         boolean ended = true;
@@ -89,13 +95,13 @@ public class Main {
             int n;
             if(xturn){
                 if(xbot){
-                    board[bot(1)-1] = 1;
+                    board[bot(1)] = 1;
                 }else {
                     board[ply()-1] = 1;
                 }
             }else{
                 if(obot){
-                    board[bot(2)-1] = 2;
+                    board[bot(2)] = 2;
                 }else {
                     board[ply()-1] = 2;
                 }
