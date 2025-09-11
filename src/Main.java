@@ -121,8 +121,11 @@ public class Main {
                     draw();
                     if (board[c[0]] == 1){
                         System.out.println("X WINS!");
+
+
                     }else{
                         System.out.println("O WINS!");
+
                     }
                     board = new int[9];
                     ended = true;
