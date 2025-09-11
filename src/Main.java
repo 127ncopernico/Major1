@@ -58,6 +58,20 @@ public class Main {
                     sc.nextInt();
                 }
             }
+            for(int i = 0; i < 10; i++){
+                if(i == 9){
+                    draw();
+                    System.out.println("ITS A DRAW!");
+                    board = new int[9];
+                    xturn = false;
+                    System.out.print("Enter 1 to continue.");
+                    sc.nextInt();
+                }else{
+                    if (board[i] == 0){
+                        break;
+                    }
+                }
+            }
             xturn = !xturn;
         }
 
