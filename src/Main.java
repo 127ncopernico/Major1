@@ -73,18 +73,28 @@ public class Main {
                ended = false;
 
                System.out.print("IS X A BOT? (Y/N): ");
-               if (sc.nextLine().equals("Y")){
-                   xbot = true;
-               }else{
-                   xbot = false;
+               while (true){
+                   String s = sc.nextLine();
+                   if (s.equals("Y")){
+                       xbot = true;
+                       break;
+                   }else if(s.equals("N")){
+                       xbot = false;
+                       break;
+                   }
                }
 
                System.out.print("IS O A BOT? (Y/N): ");
-               if (sc.nextLine().equals("Y")){
-                   obot = true;
-               }else{
-                   obot = false;
-               }
+                while (true){
+                    String s = sc.nextLine();
+                    if (s.equals("Y")){
+                        obot = true;
+                        break;
+                    }else if(s.equals("N")){
+                        obot = false;
+                        break;
+                    }
+                }
             }
             draw();
             if(xturn){
